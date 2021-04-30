@@ -7,7 +7,8 @@ var wikiAPIBase = "https://en.wikipedia.org/w/api.php?action=query&origin=*&prop
 
 
 //eventListner to get the fighter name:
-var allFighterElements = document.querySelectorAll("li")
+var allFighterElements = document.querySelectorAll("li, span.champion")
+//allFighterElements=allFighterElements.concat(document.querySelectorAll(".champion"))
 allFighterElements.forEach(function(element) { //forEach Performs the specified action for each node in an list.
     //use the textContent and make a valid query:
     var fighterName = element.textContent
@@ -23,11 +24,13 @@ allFighterElements.forEach(function(element) { //forEach Performs the specified 
         }) */
         .then(response => response.json())
         .then(function(data) {
-            contentInnerHTML = Object.values(data.query.pages)[0].extract; //object.values method returns an array of a given object's own enumerable property values, in the same order; The object whose enumerable own property values are to be returned; object values returns an array whose elements are the enumerable property values found on the object
-            var content = document.createElement('div');
+            contentInnerHTML = Object.values(data.query.pages)[0].extract; //object.values method makes an array then grabs the extract from it;
+            console.log(contentInnerHTML)
+            var content = document.getElementById('result');
             content.innerHTML = contentInnerHTML;
-            document.body.append(content)
+            document.body.append(content) //The append() method inserts specified content at the end of the selected elements.
         });
+
         
     })
 })
