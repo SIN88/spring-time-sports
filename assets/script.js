@@ -1,13 +1,13 @@
-$("button").click(function () {
-    let api=`https://wendy-cors.herokuapp.com/https://mma-fighters.herokuapp.com/api/fighter/`
-    var searchFighter = Math.ceil(Math.random()*1583)
+$("button").click(function () { //click function to use random button
+    let api=`https://wendy-cors.herokuapp.com/https://mma-fighters.herokuapp.com/api/fighter/` //fighter api
+    var searchFighter = Math.ceil(Math.random()*1583) //fighter search
 
   fetch(api + searchFighter)
     .then(function (data) {
       return data.json();
     })
 
-    .then(function (data) {
+    .then(function (data) { //sets the data received in card form 
       console.log(data);
       $("body").append(`
       <div class="card" style="background-color:red; color: white; width: 40rem;">
